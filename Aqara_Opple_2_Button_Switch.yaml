@@ -1,0 +1,95 @@
+blueprint:
+  name: Z2M - Aqara Opple - Wireless Scene Switch 2 Button
+  description: Control anything using Aqara Opple two button remote
+  
+  domain: automation
+  input:
+    switch:
+      name: Aqara switch
+      description: Aqara switch to use
+      selector:
+        entity:
+          domain: sensor
+          integration: mqtt
+    button_left_single_press:
+      name: Left button - Single press
+      description: Action to run on a single press of the left button
+      default: []
+      selector:
+        action: {}
+    button_left_double_press:
+      name: Left button - Double press
+      description: Action to run on a double press of the left button
+      default: []
+      selector:
+        action: {}
+    button_left_triple_press:
+      name: Left button - Triple press
+      description: Action to run on a triple press of the left button
+      default: []
+      selector:
+        action: {}
+    button_left_hold:
+      name: Left button - Hold
+      description: Action to run when left button is held
+      default: []
+      selector:
+        action: {}
+    button_right_single_press:
+      name: Right button - Single press
+      description: Action to run on a single press of the right button
+      default: []
+      selector:
+        action: {}
+    button_right_double_press:
+      name: Right button - Double press
+      description: Action to run on a double press of the right button
+      default: []
+      selector:
+        action: {}
+    button_right_triple_press:
+      name: Right button - Triple press
+      description: Action to run on a triple press of the right button
+      default: []
+      selector:
+        action: {}
+    button_right_hold:
+      name: Right button - Hold
+      description: Action to run when right button is held
+      default: []
+      selector:
+        action: {}
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input 'switch'
+  attribute: action
+action:
+- variables:
+    command: '{{ trigger.to_state.state }}'
+- choose:
+  - conditions:
+    - '{{ command == ''button_1_single'' }}'
+    sequence: !input 'button_left_single_press'
+  - conditions:
+    - '{{ command == ''button_1_double'' }}'
+    sequence: !input 'button_left_double_press'
+  - conditions:
+    - '{{ command == ''button_1_triple'' }}'
+    sequence: !input 'button_left_triple_press'
+  - conditions:
+    - '{{ command == ''button_1_hold'' }}'
+    sequence: !input 'button_left_hold'
+  - conditions:
+    - '{{ command == ''button_2_single'' }}'
+    sequence: !input 'button_right_single_press'
+  - conditions:
+    - '{{ command == ''button_2_double'' }}'
+    sequence: !input 'button_right_double_press'
+  - conditions:
+    - '{{ command == ''button_2_triple'' }}'
+    sequence: !input 'button_right_triple_press'
+  - conditions:
+    - '{{ command == ''button_2_hold'' }}'
+    sequence: !input 'button_right_hold'
