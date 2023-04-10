@@ -63,8 +63,7 @@ mode: restart
 max_exceeded: silent
 trigger:
 - platform: state
-  entity_id: !input 'switch'
-  attribute: action
+  entity_id: !input 'switch'  
 action:
 - variables:
     command: '{{ trigger.to_state.state }}'
