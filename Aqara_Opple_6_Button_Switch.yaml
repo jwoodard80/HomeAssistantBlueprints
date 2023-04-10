@@ -1,8 +1,6 @@
 blueprint:
-  name: Z2M - Aqara Opple 6-Button Switch
-  description: 'Control anything using the Aqara Opple 6-button switch (WXCJKG13LM)
-
-    Inspired by the blueprint of @bouyssic (https://community.home-assistant.io/t/z2m-aqara-opple-4-boutons-blueprint-wxcjkg12lm/279950)'
+  name: 6 Button - Aqara Opple Switch - Z2M
+  description: 'Aqara Opple Six Button Remote'
   domain: automation
   input:
     switch:
