@@ -1,7 +1,6 @@
 blueprint:
-  name: Z2M - Aqara Opple - Wireless Scene Switch 2 Button
-  description: Control anything using Aqara Opple two button remote
-  
+  name: 2 Button - Aqara Opple Switch - Z2M
+  description: 'Aqara Opple Two Button Remote'  
   domain: automation
   input:
     switch:
@@ -11,6 +10,7 @@ blueprint:
         entity:
           domain: sensor
           integration: mqtt
+          multiple: false
     button_left_single_press:
       name: Left button - Single press
       description: Action to run on a single press of the left button
