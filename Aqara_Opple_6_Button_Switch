@@ -1,0 +1,296 @@
+blueprint:
+  name: Z2M - Aqara Opple 6-Button Switch
+  description: 'Control anything using the Aqara Opple 6-button switch (WXCJKG13LM)
+
+    Inspired by the blueprint of @bouyssic (https://community.home-assistant.io/t/z2m-aqara-opple-4-boutons-blueprint-wxcjkg12lm/279950)'
+  domain: automation
+  input:
+    switch:
+      name: Aqara switch
+      description: Aqara switch to use
+      selector:
+        entity:
+          domain: sensor
+          integration: mqtt
+          multiple: false
+    button_1_single:
+      name: Top Left Button - Single Click
+      description: Action to run after single click of top left button
+      default: []
+      selector:
+        action: {}
+    button_1_double:
+      name: Top Left Button - Double Click
+      description: Action to run after double click of top left button
+      default: []
+      selector:
+        action: {}
+    button_1_triple:
+      name: Top Left Button - Triple Click
+      description: Action to run after triple click of top left button
+      default: []
+      selector:
+        action: {}
+    button_1_hold:
+      name: Top Left Button - Hold
+      description: Action to run after hold of top left button
+      default: []
+      selector:
+        action: {}
+    button_1_release:
+      name: Top Left Button - Hold & Release
+      description: Action to run after hold & release of top left button
+      default: []
+      selector:
+        action: {}
+    button_2_single:
+      name: Top Right Button - Single Click
+      description: Action to run after single click of top right button
+      default: []
+      selector:
+        action: {}
+    button_2_double:
+      name: Top Right Button - Double Click
+      description: Action to run after double click of top right button
+      default: []
+      selector:
+        action: {}
+    button_2_triple:
+      name: Top Right Button - Triple Click
+      description: Action to run after triple click of top right button
+      default: []
+      selector:
+        action: {}
+    button_2_hold:
+      name: Top Right Button - Hold
+      description: Action to run after hold of top right button
+      default: []
+      selector:
+        action: {}
+    button_2_release:
+      name: Top Right Button - Hold & Release
+      description: Action to run after hold & release of top right button
+      default: []
+      selector:
+        action: {}
+    button_3_single:
+      name: Middle Left Button -  Single Click
+      description: Action to run after single click of middle left button
+      default: []
+      selector:
+        action: {}
+    button_3_double:
+      name: Middle Left Button -  Double Click
+      description: Action to run after double click of middle left button
+      default: []
+      selector:
+        action: {}
+    button_3_triple:
+      name: Middle Left Button -  Triple Click
+      description: Action to run after triple click of middle left button
+      default: []
+      selector:
+        action: {}
+    button_3_hold:
+      name: Middle Left Button -  Hold
+      description: Action to run after hold of middle left button
+      default: []
+      selector:
+        action: {}
+    button_3_release:
+      name: Middle Left Button -  Hold & Release
+      description: Action to run after hold & release of middle left button
+      default: []
+      selector:
+        action: {}
+    button_4_single:
+      name: Middle Right Button - Single Click
+      description: Action to run after single click of middle right button
+      default: []
+      selector:
+        action: {}
+    button_4_double:
+      name: Middle Right Button - Double Click
+      description: Action to run after double click of middle right button
+      default: []
+      selector:
+        action: {}
+    button_4_triple:
+      name: Middle Right Button - Triple Click
+      description: Action to run after triple click of middle right button
+      default: []
+      selector:
+        action: {}
+    button_4_hold:
+      name: Middle Right Button - Hold
+      description: Action to run after hold of middle right button
+      default: []
+      selector:
+        action: {}
+    button_4_release:
+      name: Middle Right Button - Hold & Release
+      description: Action to run after hold & release of middle right button
+      default: []
+      selector:
+        action: {}
+    button_5_single:
+      name: Bottom Left Button - Single Click
+      description: Action to run after single click of bottom left button
+      default: []
+      selector:
+        action: {}
+    button_5_double:
+      name: Bottom Left Button - Double Click
+      description: Action to run after double click of bottom left button
+      default: []
+      selector:
+        action: {}
+    button_5_triple:
+      name: Bottom Left Button - Triple Click
+      description: Action to run after triple click of bottom left button
+      default: []
+      selector:
+        action: {}
+    button_5_hold:
+      name: Bottom Left Button - Hold
+      description: Action to run after hold of bottom left button
+      default: []
+      selector:
+        action: {}
+    button_5_release:
+      name: Bottom Left Button - Hold & Release
+      description: Action to run after hold & release of bottom left button
+      default: []
+      selector:
+        action: {}
+    button_6_single:
+      name: Bottom Right Button - Single Click
+      description: Action to run after single click of bottom right button
+      default: []
+      selector:
+        action: {}
+    button_6_double:
+      name: Bottom Right Button - Double Click
+      description: Action to run after double click of bottom right button
+      default: []
+      selector:
+        action: {}
+    button_6_triple:
+      name: Bottom Right Button - Triple Click
+      description: Action to run after triple click of bottom right button
+      default: []
+      selector:
+        action: {}
+    button_6_hold:
+      name: Bottom Right Button - Hold
+      description: Action to run after hold of bottom right button
+      default: []
+      selector:
+        action: {}
+    button_6_release:
+      name: Bottom Right Button - Hold & Release
+      description: Action to run after hold & release of bottom right button
+      default: []
+      selector:
+        action: {}
+  source_url: https://community.home-assistant.io/t/zigbee2mqtt-z2m-aqara-opple-6-button-remote-3-bands-wxcjkg13lm/391475
+mode: single
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input switch
+  attribute: action
+action:
+- variables:
+    command: '{{ trigger.to_state.state }}'
+- choose:
+  - conditions:
+    - '{{ command == ''button_1_single'' }}'
+    sequence: !input button_1_single
+  - conditions:
+    - '{{ command == ''button_2_single'' }}'
+    sequence: !input button_2_single
+  - conditions:
+    - '{{ command == ''button_3_single'' }}'
+    sequence: !input button_3_single
+  - conditions:
+    - '{{ command == ''button_4_single'' }}'
+    sequence: !input button_4_single
+  - conditions:
+    - '{{ command == ''button_5_single'' }}'
+    sequence: !input button_5_single
+  - conditions:
+    - '{{ command == ''button_6_single'' }}'
+    sequence: !input button_6_single
+  - conditions:
+    - '{{ command == ''button_1_double'' }}'
+    sequence: !input button_1_double
+  - conditions:
+    - '{{ command == ''button_2_double'' }}'
+    sequence: !input button_2_double
+  - conditions:
+    - '{{ command == ''button_3_double'' }}'
+    sequence: !input button_3_double
+  - conditions:
+    - '{{ command == ''button_4_double'' }}'
+    sequence: !input button_4_double
+  - conditions:
+    - '{{ command == ''button_5_double'' }}'
+    sequence: !input button_5_double
+  - conditions:
+    - '{{ command == ''button_6_double'' }}'
+    sequence: !input button_6_double
+  - conditions:
+    - '{{ command == ''button_1_triple'' }}'
+    sequence: !input button_1_triple
+  - conditions:
+    - '{{ command == ''button_2_triple'' }}'
+    sequence: !input button_2_triple
+  - conditions:
+    - '{{ command == ''button_3_triple'' }}'
+    sequence: !input button_3_triple
+  - conditions:
+    - '{{ command == ''button_4_triple'' }}'
+    sequence: !input button_4_triple
+  - conditions:
+    - '{{ command == ''button_5_triple'' }}'
+    sequence: !input button_5_triple
+  - conditions:
+    - '{{ command == ''button_6_triple'' }}'
+    sequence: !input button_6_triple
+  - conditions:
+    - '{{ command == ''button_1_hold'' }}'
+    sequence: !input button_1_hold
+  - conditions:
+    - '{{ command == ''button_2_hold'' }}'
+    sequence: !input button_2_hold
+  - conditions:
+    - '{{ command == ''button_3_hold'' }}'
+    sequence: !input button_3_hold
+  - conditions:
+    - '{{ command == ''button_4_hold'' }}'
+    sequence: !input button_4_hold
+  - conditions:
+    - '{{ command == ''button_5_hold'' }}'
+    sequence: !input button_5_hold
+  - conditions:
+    - '{{ command == ''button_6_hold'' }}'
+    sequence: !input button_6_hold
+  - conditions:
+    - '{{ command == ''button_1_release'' }}'
+    sequence: !input button_1_release
+  - conditions:
+    - '{{ command == ''button_2_release'' }}'
+    sequence: !input button_2_release
+  - conditions:
+    - '{{ command == ''button_3_release'' }}'
+    sequence: !input button_3_release
+  - conditions:
+    - '{{ command == ''button_4_release'' }}'
+    sequence: !input button_4_release
+  - conditions:
+    - '{{ command == ''button_5_release'' }}'
+    sequence: !input button_5_release
+  - conditions:
+    - '{{ command == ''button_6_release'' }}'
+    sequence: !input button_6_release
